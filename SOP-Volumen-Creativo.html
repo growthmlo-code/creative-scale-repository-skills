@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOP — Volumen Creativo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #090909;
+  --bg-card: rgba(255,255,255,0.04);
+  --bg-card-alt: rgba(255,255,255,0.07);
+  --text: #ededed;
+  --text-dim: #999;
+  --accent: #4AFF53;
+  --bad: #FF4A4A;
+  --warn: #FFC24A;
+  --border: rgba(255,255,255,0.08);
+  --border-accent: rgba(74,255,83,0.3);
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f6f5f3;
+    --bg-card: rgba(0,0,0,0.025);
+    --bg-card-alt: rgba(0,0,0,0.05);
+    --text: #18181b;
+    --text-dim: #71717a;
+    --accent: #1a8f2a;
+    --bad: #c03030;
+    --warn: #9a6e00;
+    --border: rgba(0,0,0,0.08);
+    --border-accent: rgba(26,143,42,0.3);
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #090909;
+  --bg-card: rgba(255,255,255,0.04);
+  --bg-card-alt: rgba(255,255,255,0.07);
+  --text: #ededed;
+  --text-dim: #999;
+  --accent: #4AFF53;
+  --bad: #FF4A4A;
+  --warn: #FFC24A;
+  --border: rgba(255,255,255,0.08);
+  --border-accent: rgba(74,255,83,0.3);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Manrope', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 2rem 1rem;
+}
+.container { max-width: 860px; margin: 0 auto; }
+
+/* Header */
+.header {
+  text-align: center;
+  padding: 3rem 0 2rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 3rem;
+}
+.header .badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #000;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3em 1em;
+  border-radius: 100px;
+  margin-bottom: 1rem;
+}
+.header h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+.header .subtitle {
+  font-size: 1rem;
+  color: var(--text-dim);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Section */
+.section {
+  margin-bottom: 3rem;
+}
+.section-num {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+.section h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+.section h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 1.5rem 0 0.5rem;
+}
+.section p, .section li {
+  color: var(--text);
+  font-size: 0.95rem;
+}
+.section ul, .section ol {
+  padding-left: 1.5rem;
+  margin: 0.5rem 0;
+}
+.section li { margin-bottom: 0.3rem; }
+
+/* Cards */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+}
+.card-accent {
+  border-left: 3px solid var(--accent);
+}
+.card-warn {
+  border-left: 3px solid var(--warn);
+}
+.card-bad {
+  border-left: 3px solid var(--bad);
+}
+
+/* Thesis box */
+.thesis {
+  background: var(--bg-card-alt);
+  border: 1px solid var(--border-accent);
+  border-left: 4px solid var(--accent);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  margin: 1.5rem 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+/* Formula blocks */
+.formula-block {
+  background: var(--bg-card-alt);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  font-family: 'Manrope', monospace;
+  font-size: 0.9rem;
+  overflow-x: auto;
+}
+.formula-block .step {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  padding: 0.4rem 0;
+}
+.formula-block .step-num {
+  color: var(--accent);
+  font-weight: 800;
+  min-width: 2rem;
+}
+.formula-block .step-label {
+  font-weight: 600;
+  min-width: 180px;
+}
+.formula-block .step-eq {
+  color: var(--text-dim);
+}
+
+/* Chain visual */
+.chain {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 1.5rem 0;
+}
+.chain-step {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  text-align: center;
+  flex: 1;
+  min-width: 120px;
+}
+.chain-step .label { font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; }
+.chain-step .value { font-size: 1.3rem; font-weight: 800; margin-top: 0.3rem; }
+.chain-arrow { color: var(--accent); font-size: 1.2rem; font-weight: 800; }
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+th, td {
+  padding: 0.7rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+th {
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+}
+td { color: var(--text); }
+
+/* Benchmark table */
+.benchmark-table td:first-child { font-weight: 600; }
+.red { color: var(--bad); font-weight: 700; }
+.yellow { color: var(--warn); font-weight: 700; }
+.green { color: var(--accent); font-weight: 700; }
+
+/* KPI grid */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 1rem 0;
+}
+@media (max-width: 640px) {
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .chain { flex-direction: column; }
+  .chain-arrow { transform: rotate(90deg); }
+}
+.kpi-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+}
+.kpi-card .kpi-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  margin-bottom: 0.3rem;
+}
+.kpi-card .kpi-value {
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+.kpi-card .kpi-note {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  margin-top: 0.3rem;
+}
+
+/* Example block */
+.example {
+  background: var(--bg-card-alt);
+  border: 1px solid var(--border-accent);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+.example .example-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+/* Separator */
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 2rem 0;
+  border-top: 1px solid var(--border);
+  margin-top: 3rem;
+}
+.footer p {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+.footer .logo {
+  font-weight: 800;
+  color: var(--accent);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Highlight */
+mark {
+  background: rgba(74,255,83,0.15);
+  color: var(--accent);
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+/* Callout */
+.callout {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+.callout-icon { font-size: 1.2rem; flex-shrink: 0; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- HEADER -->
+<div class="header">
+  <div class="badge">Creative Scale by M.L.O Growth</div>
+  <h1>Volumen Creativo: La Guia Completa</h1>
+  <p class="subtitle">Como calcular cuantos creativos necesita tu cuenta de Meta Ads cada semana para alcanzar tus objetivos de facturacion. Paso a paso, con formulas y ejemplos reales.</p>
+</div>
+
+<!-- ================================================ -->
+<!-- SECTION 0: La tesis central -->
+<!-- ================================================ -->
+<div class="section">
+  <div class="section-num">Concepto clave</div>
+  <h2>La Tesis Central</h2>
+
+  <div class="thesis">
+    Para sostener X euros de inversion necesitas N winners activos.<br>
+    Los winners se te mueren cada D dias.<br>
+    Con un hit rate H, tienes que lanzar <strong>N / H creativos</strong> cada D dias.<br><br>
+    <em>Todo lo demas son detalles de esa ecuacion.</em>
+  </div>
+
+  <p>El volumen creativo no se decide "a ojo" ni por lo que haga la competencia. Se calcula con una formula que conecta tu objetivo de facturacion con el numero exacto de creativos que tienes que producir cada semana.</p>
+
+  <p style="margin-top: 0.8rem;">Este documento te ensena a hacer ese calculo paso a paso.</p>
+</div>
+
+<hr>
+
+<!-- ================================================ -->
+<!-- SECTION 1: Que es un winner -->
+<!-- ================================================ -->
+<div class="section">
+  <div class="section-num">Paso 1</div>
+  <h2>Que es un Winner</h2>
+
+  <p>Antes de calcular nada, necesitas saber que cuenta como "ganador" en TU cuenta. No hay un numero universal.</p>
+
+  <div class="card card-accent">
+    <strong>Winner = un anuncio que cumple DOS condiciones a la vez:</strong>
+    <ol style="margin-top: 0.5rem;">
+      <li><strong>Gasto minimo</strong> (suelo): ha gastado al menos <mark>50 euros</mark> (o equivalente). Si no ha gastado eso, no ha tenido oportunidad real de demostrar nada.</li>
+      <li><strong>ROAS igual o superior al umbral de TU marca</strong>: este numero sale de tu KPI Panel. Si tu breakeven ROAS es 2.5, entonces solo los ads con ROAS mayor o igual a 2.5 son winners.</li>
+    </ol>
+  </div>
+
+  <div class="callout">
+    <span class="callout-icon">⚠️</span>
+    <div><strong>Importante:</strong> El umbral de ROAS NO es el mismo para todas las marcas. Cada negocio tiene su propio margen, su propio AOV y su propio breakeven. Un ROAS de 2.0 puede ser excelente para una marca y desastroso para otra.</div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ================================================ -->
+<!-- SECTION 2: Los 6 KPIs -->
+<!-- ================================================ -->
+<div class="section">
+  <div class="section-num">Paso 2</div>
+  <h2>Los 6 KPIs que Debes Conocer</h2>
+
+  <p>Estos son los numeros que miden la salud de tu motor creativo. Calcularlos es obligatorio antes de hacer cualquier forecast.</p>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-name">1. Hit Rate de Anuncio</div>
+      <div class="kpi-value" style="color: var(--accent);">HR%</div>
+      <div class="kpi-note">Winners / total de ads con gasto.<br>Mide el motor creativo.</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-name">2. Hit Rate de Brief</div>
+      <div class="kpi-value" style="color: var(--accent);">HRb%</div>
+      <div class="kpi-note">Briefs con al menos 1 winner / total briefs.<br>Mide al estratega.</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-name">3. Churn A (Vida media)</div>
+      <div class="kpi-value" style="color: var(--warn);">dias</div>
+      <div class="kpi-note">Mediana de dias que un winner sigue siendo winner.<br>Cuanto dura tu inventario.</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-name">4. Churn B (% caida)</div>
+      <div class="kpi-value" style="color: var(--warn);">%</div>
+      <div class="kpi-note">% de winners del mes pasado que ya NO son winners.<br>A que velocidad pierdes inventario.</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-name">5. Gasto Medio por Winner</div>
+      <div class="kpi-value">euros</div>
+      <div class="kpi-note">Total gasto de winners / numero de winners.<br>Cuanto "carga" cada ganador.</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-name">6. Test Tax</div>
+      <div class="kpi-value" style="color: var(--bad);">%</div>
+      <div class="kpi-note">% del gasto absorbido por NO-winners.<br>Tu "impuesto" por testear.</div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ================================================ -->
+<!-- SECTION 3: La formula del hit rate -->
+<!-- ================================================ -->
+<div class="section">
+  <div class="section-num">Paso 3</div>
+  <h2>La Formula del Hit Rate</h2>
+
+  <p>El hit rate es EL numero mas importante del sistema. Te dice que porcentaje de los creativos que lanzas se convierten en winners.</p>
+
+  <div class="formula-block">
+    <div style="font-weight: 700; margin-bottom: 0.5rem; color: var(--accent);">Hit Rate de Anuncio:</div>
+    <div style="font-size: 1.3rem; font-weight: 800; text-align: center; padding: 0.5rem 0;">
+      hit_rate = winners / ads_con_gasto_mayor_a_suelo
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="callout-icon">📌</span>
+    <div><strong>El denominador importa:</strong> El denominador es TODOS los ads que hayan tenido gasto por encima del suelo (50 euros), no solo los top spenders. Coger solo los que mas gastan infla el hit rate artificialmente.</div>
+  </div>
+
+  <h3>Benchmarks de Hit Rate</h3>
+  <p>Estos son los rangos de referencia del mercado. Sirven para calibrar, no para sustituir tus propios datos:</p>
+
+  <table class="benchmark-table">
+    <thead>
+      <tr><th>Nivel</th><th>Hit Rate</th><th>Que significa</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="red">🔴 Alarma</span></td>
+        <td class="red">&lt; 3%</td>
+        <td>El motor esta roto. Cada winner te cuesta demasiado. Para de escalar volumen y arregla la estrategia.</td>
+      </tr>
+      <tr>
+        <td><span class="yellow">🟡 Aceptable</span></td>
+        <td class="yellow">5%</td>
+        <td>Funciona pero con mucho desperdicio. Hay margen de mejora claro.</td>
+      </tr>
+      <tr>
+        <td><span class="green">🟢 Bueno</span></td>
+        <td class="green">10%</td>
+        <td>Motor sano. Puedes escalar volumen con confianza.</td>
+      </tr>
+      <tr>
+        <td><span style="color: var(--accent); font-weight: 700;">⭐ Excelente</span></td>
+        <td style="color: var(--accent); font-weight: 700;">15%</td>
+        <td>Motor de elite. El techo real es ~20%; por encima, es mas barato hacer mas que hacer mejor.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="card card-accent">
+    <strong>La ensenanza central:</strong> La diferencia entre un hit rate del 5% y uno del 15% NO es "un poco mejor". Es <mark>3x menos creativos necesarios</mark> para el mismo resultado. Arreglar el hit rate siempre es mas barato que comprar volumen.
+  </div>
+</div>
+
+<hr>
+
+<!-- ================================================ -->
+<!-- SECTION 4: Todos los benchmarks -->
+<!-- ================================================ -->
+<div class="section">
+  <div class="section-num">Referencia</div>
+  <h2>Tabla Completa de Benchmarks</h2>
+
+  <table class="benchmark-table">
+    <thead>
+      <tr><th>KPI</th><th class="red">🔴 Alarma</th><th class="yellow">🟡 Aceptable</th><th class="green">🟢 Bueno</th><th>⭐ Excelente</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Hit rate anuncio</td><td class="red">&lt;3%</td><td class="yellow">5%</td><td class="green">10%</td><td>15%</td></tr>
+      <tr><td>Churn B mensual</td><td class="red">&gt;53%</td><td class="yellow">45%</td><td class="green">40%</td><td>&lt;35%</td></tr>
+      <tr><td>Vida media (half-life)</td><td class="red">&lt;15 dias</td><td class="yellow">~20 dias</td><td class="green">27 dias</td><td>&gt;35 dias</td></tr>
+      <tr><td>Test tax</td><td class="red">~50%</td><td class="yellow">40%</td><td class="green">&lt;30%</td><td>&lt;25%</td></tr>
+      <tr><td>Concentracion top 4%</td><td class="red">&gt;70%</td><td class="yellow">64%</td><td class="green">&lt;50%</td><td>&lt;40%</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <span class="callout-icon">💡</span>
+    <div><strong>Regla rapida de volumen:</strong> Aproximadamente <mark>1 creativo nuevo por cada 1.000 euros de inversion mensual</mark>. Es una aproximacion grosera para sanity-check. El forecast de 5 pasos siempre manda.</div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ================================================ -->
+<!-- SECTION 5: El forecast de 5 pasos -->
+<!-- ================================================ -->
+<div class="section">
+  <div class="section-num">Paso 4</div>
+  <h2>El Forecast: Cuantos Creativos Necesitas</h2>
+
+  <p>Esta es la formula que conecta tu objetivo de facturacion con el numero exacto de creativos que tienes que producir. Son 5 pasos:</p>
+
+  <h3>Paso 0: Convertir facturacion a inversion</h3>
+  <div class="formula-block">
+    <div style="text-align: center; font-size: 1.1rem; font-weight: 700;">
+      inversion_objetivo = facturacion_objetivo / ROAS_objetivo
+    </div>
+    <div style="text-align: center; font-size: 0.8rem; color: var(--text-dim); margin-top: 0.3rem;">
+      El ROAS objetivo sale de tu KPI Panel
+    </div>
+  </div>
+
+  <h3>Pasos 1–5: La cadena del forecast</h3>
+  <div class="formula-block">
+    <div class="step"><span class="step-num">1.</span><span class="step-label">Winners necesarios</span><span class="step-eq">= inversion_objetivo / gasto_medio_por_winner</span></div>
+    <div class="step"><span class="step-num">2.</span><span class="step-label">Winners que sobreviven</span><span class="step-eq">= winners_hoy x (1 - churn_B)</span></div>
+    <div class="step"><span class="step-num">3.</span><span class="step-label">Winners nuevos</span><span class="step-eq">= paso_1 - paso_2</span></div>
+    <div class="step"><span class="step-num">4.</span><span class="step-label">Creativos a lanzar</span><span class="step-eq">= paso_3 / hit_rate</span></div>
+    <div class="step"><span class="step-num">5.</span><span class="step-label">+ Buffer 15%</span><span class="step-eq">= paso_4 x 1.15</span></div>
+  </div>
+
+  <p style="margin-top: 0.5rem; color: var(--text-dim); font-size: 0.85rem;">Divide el resultado entre 4.33 para obtener el numero semanal.</p>
+</div>
+
+<hr>
+
+<!-- ================================================ -->
+<!-- SECTION 6: Ejemplo trabajado -->
+<!-- ================================================ -->
+<div class="section">
+  <div class="section-num">Ejemplo</div>
+  <h2>Ejemplo Paso a Paso</h2>
+
+  <p>Marca ficticia. Objetivo: <strong>facturar 120.000 euros/mes</strong>. ROAS objetivo: <strong>3.0</strong>.</p>
+
+  <div class="chain">
+    <div class="chain-step">
+      <div class="label">Inversion</div>
+      <div class="value">40.000 €</div>
+      <div class="label">120k / 3.0</div>
+    </div>
+    <span class="chain-arrow">→</span>
+    <div class="chain-step">
+      <div class="label">Winners necesarios</div>
+      <div class="value">16</div>
+      <div class="label">40k / 2.500€</div>
+    </div>
+    <span class="chain-arrow">→</span>
+    <div class="chain-step">
+      <div class="label">Sobreviven</div>
+      <div class="value">6</div>
+      <div class="label">10 x (1 - 0.45)</div>
+    </div>
+    <span class="chain-arrow">→</span>
+    <div class="chain-step">
+      <div class="label">Nuevos</div>
+      <div class="value">10</div>
+      <div class="label">16 - 6</div>
+    </div>
+    <span class="chain-arrow">→</span>
+    <div class="chain-step">
+      <div class="label">Creativos</div>
+      <div class="value" style="color: var(--accent);">144</div>
+      <div class="label">10/0.08 x 1.15</div>
+    </div>
+  </div>
+
+  <div class="card card-accent">
+    <strong>Lectura:</strong> Con hit rate 8% y winners que aguantan 2.500 euros, este objetivo pide <mark>144 creativos/mes</mark> (~33/semana).
+  </div>
+
+  <h3>El mismo caso con motor sano (hit rate 15%)</h3>
+  <div class="example">
+    <div class="example-title">Escenario optimizado</div>
+    <p>Mismos 16 winners necesarios. Sobreviven 6. Nuevos: 10.</p>
+    <p><strong>Pero con hit rate 15%:</strong> 10 / 0.15 = 67. + buffer = <mark>31 creativos/mes</mark>.</p>
+    <p style="margin-top: 0.5rem; font-weight: 700; color: var(--accent);">Diferencia: 144 vs 31. El motor malo pide 4.6x mas creativos. Por eso arreglar el hit rate siempre es mas barato que comprar volumen.</p>
+  </div>
+</div>
+
+<hr>
+
+<!-- ================================================ -->
+<!-- SECTION 7: Sensibilidad -->
+<!-- ================================================ -->
+<div class="section">
+  <div class="section-num">Paso 5</div>
+  <h2>Que Palanca Mover Primero</h2>
+
+  <p>Antes de pedir "mas creativos", comprueba cual de las tres palancas mueve mas el resultado:</p>
+
+  <table>
+    <thead>
+      <tr><th>Palanca</th><th>Efecto</th><th>Coste</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="font-weight: 700; color: var(--accent);">Hit rate</td>
+        <td>Inversamente proporcional al volumen requerido. Subir de 5% a 10% reduce los creativos necesarios a la mitad.</td>
+        <td>Medio — es trabajo de estrategia (personas, angulos, formatos)</td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700;">Gasto medio por winner</td>
+        <td>Inversamente proporcional a winners necesarios. Winners que aguantan mas = menos winners hacen falta.</td>
+        <td>Alto — depende del TAM, oferta y calidad</td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700;">Churn B</td>
+        <td>Cuantos mas sobreviven, menos nuevos hacen falta.</td>
+        <td>Medio — subir mezcla top-funnel reduce fatiga</td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700; color: var(--bad);">Volumen (mas creativos)</td>
+        <td>Lineal: el doble de creativos = el doble de coste recurrente.</td>
+        <td>Alto y recurrente — es la palanca mas cara</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="card card-warn">
+    <strong>Regla:</strong> Recomienda volumen SOLO cuando el hit rate ya esta en benchmark (8-10%+). Si no, estas pidiendo hacer mas de lo que no funciona.
+  </div>
+</div>
+
+<hr>
+
+<!-- ================================================ -->
+<!-- SECTION 8: Diagnostico -->
+<!-- ================================================ -->
+<div class="section">
+  <div class="section-num">Paso 6</div>
+  <h2>Diagnostico: Volumen o Calidad</h2>
+
+  <p>Despues de calcular, siempre viene la pregunta: que hago con estos numeros? Aqui esta el framework de diagnostico:</p>
+
+  <div class="card card-accent" style="margin-bottom: 0.5rem;">
+    <strong>Hit rate bueno (8-10%+) pero pocos creativos →</strong> <mark>Falta volumen</mark><br>
+    El motor funciona. Sube la produccion.
+  </div>
+  <div class="card card-bad" style="margin-bottom: 0.5rem;">
+    <strong>Mucho volumen pero hit rate bajo (&lt;5%) →</strong> <span style="color: var(--bad); font-weight: 700;">Falta calidad</span><br>
+    Parar de escalar. Revisar personas, angulos y gaps de formato ANTES de hacer mas.
+  </div>
+  <div class="card card-warn" style="margin-bottom: 0.5rem;">
+    <strong>Churn alto (&gt;50% mensual) →</strong> <span style="color: var(--warn); font-weight: 700;">Demasiado bottom-funnel</span><br>
+    Subir la mezcla hacia contenido de awareness: fatiga mas lento.
+  </div>
+  <div class="card card-bad" style="margin-bottom: 0.5rem;">
+    <strong>Test tax ~50% →</strong> <span style="color: var(--bad); font-weight: 700;">Estrategia rota</span><br>
+    La mitad de tu inversion se va en testear ads que no funcionan. Hacer mejor antes que hacer mas.
+  </div>
+  <div class="card card-warn">
+    <strong>1-2 ads sostienen casi todo el gasto →</strong> <span style="color: var(--warn); font-weight: 700;">Riesgo de cartera</span><br>
+    Diversifica ya. No es un problema de hoy, es de dentro de 6 semanas cuando fatiguen.
+  </div>
+</div>
+
+<hr>
+
+<!-- ================================================ -->
+<!-- SECTION 9: Receta semanal -->
+<!-- ================================================ -->
+<div class="section">
+  <div class="section-num">Paso 7</div>
+  <h2>Receta de Produccion Semanal</h2>
+
+  <p>Una vez tienes el numero de creativos/semana, lo desglosamos en que producir exactamente:</p>
+
+  <div class="formula-block">
+    <div style="font-weight: 700; color: var(--accent); margin-bottom: 0.5rem;">Mezcla de produccion recomendada:</div>
+    <div class="step"><span class="step-num">50-60%</span><span>→ Replicacion e iteracion de winners actuales</span></div>
+    <div class="step"><span class="step-num">20-30%</span><span>→ Iteracion de casi-ganadores (la mina de oro)</span></div>
+    <div class="step"><span class="step-num">20-30%</span><span>→ Conceptos nuevos (la apuesta)</span></div>
+  </div>
+
+  <div class="card card-accent">
+    <strong>La clave:</strong> Producir 3 variaciones de un winner existente es mas rapido, mas barato y mas probable que ganar, que crear 3 conceptos desde cero. La iteracion es la palanca principal. Lo nuevo es la apuesta lateral.
+  </div>
+
+  <h3>El desglose en la practica</h3>
+  <ul>
+    <li><strong>Iteraciones de winners</strong> = tus top 5 winners actuales x 2-3 variaciones/semana de cada uno (refresco de hook, nuevo actor, ajuste de guion)</li>
+    <li><strong>Conceptos nuevos</strong> = (creativos/semana - iteraciones) / variaciones por concepto</li>
+    <li><strong>Variaciones por concepto recomendadas:</strong> ~3 de media (2 para tests nuevos, 4-5 para angulos ya probados)</li>
+  </ul>
+</div>
+
+<hr>
+
+<!-- ================================================ -->
+<!-- SECTION 10: Mezcla de embudo -->
+<!-- ================================================ -->
+<div class="section">
+  <div class="section-num">Paso 8</div>
+  <h2>Mezcla de Embudo</h2>
+
+  <p>No todo el volumen creativo va al mismo sitio. La mezcla de awareness marca la diferencia entre cuentas que escalan y cuentas que fatigan:</p>
+
+  <div class="formula-block">
+    <div class="step"><span class="step-num" style="min-width: 80px;">70-90%</span><span>Top-of-funnel (unaware / problem aware)</span></div>
+    <div class="step"><span class="step-num" style="min-width: 80px;">~20%</span><span>Medio de embudo (solution aware)</span></div>
+    <div class="step"><span class="step-num" style="min-width: 80px;">5-10%</span><span>Bottom-of-funnel (product / most aware)</span></div>
+  </div>
+
+  <div class="callout">
+    <span class="callout-icon">⚠️</span>
+    <div><strong>Causa #1 de churn alto:</strong> Demasiado contenido product/solution/most-aware. Ese creativo habla a un publico estrecho, satura antes y muere antes. Si el churn esta disparado, mira la mezcla de awareness ANTES de pedir mas volumen.</div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ================================================ -->
+<!-- SECTION 11: Calidad del dato -->
+<!-- ================================================ -->
+<div class="section">
+  <div class="section-num">Antes de calcular</div>
+  <h2>Limpieza de Datos</h2>
+
+  <p>Los numeros creativos se falsean con facilidad si no limpias antes. Esto es obligatorio:</p>
+
+  <ol>
+    <li style="margin-bottom: 1rem;">
+      <strong>Duplicados de Meta ("- Copia", "Copy of") → fuera del denominador.</strong><br>
+      Son relanzamientos del mismo asset. Si los cuentas, el hit rate baja artificialmente. Agrupa el ad "madre" y sus copias como UN solo creativo.
+    </li>
+    <li style="margin-bottom: 1rem;">
+      <strong>Ads con gasto por debajo del suelo → fuera.</strong><br>
+      No tuvieron oportunidad real. No entran ni en numerador ni en denominador.
+    </li>
+    <li style="margin-bottom: 1rem;">
+      <strong>Ads LEGACY sin naming → cuentan en el hit rate global, pero NO en analisis segmentado.</strong><br>
+      Reporta siempre el % de gasto no atribuible. Si supera el 30%, el analisis segmentado es indicativo.
+    </li>
+    <li>
+      <strong>Naming recomendado:</strong><br>
+      <code>[BriefID]_[Format]_[Funnel]_[Awareness]_[Framework]_[NN|IT]</code><br>
+      Brief ID siempre primero. Sin resultados en el nombre. Prohibido "- Copia".
+    </li>
+  </ol>
+</div>
+
+<hr>
+
+<!-- ================================================ -->
+<!-- SECTION 12: Proceso semanal -->
+<!-- ================================================ -->
+<div class="section">
+  <div class="section-num">Proceso</div>
+  <h2>Quien Hace Que y Cuando</h2>
+
+  <table>
+    <thead>
+      <tr><th>Tarea</th><th>Responsable</th><th>Cuando</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Ejecutar la skill y sacar numeros</td><td>Creative Strategist</td><td>Cada lunes</td></tr>
+      <tr><td>Validar la lectura de cuenta</td><td>Media Buyer</td><td>Cada lunes</td></tr>
+      <tr><td>Mantener el Panel Creativo</td><td>Creative Strategist</td><td>Semanal</td></tr>
+      <tr><td>Recalcular forecast mensual</td><td>Creative Strategist → Marcel</td><td>Dia 26 (cierre CM)</td></tr>
+      <tr><td>Higiene del naming al subir ads</td><td>Media Buyer</td><td>En cada subida</td></tr>
+      <tr><td>Definir umbral de winner (KPI Panel)</td><td>Onboarding</td><td>Al onboardear + revision trimestral</td></tr>
+    </tbody>
+  </table>
+
+  <h3>El Punto de Escalado</h3>
+  <p>Cuando el forecast dice que la marca necesita <strong>mas creativos de los que produce</strong>, hay solo tres opciones:</p>
+  <ol>
+    <li><strong>Subir la produccion</strong> (mas volumen contratado)</li>
+    <li><strong>Subir el hit rate</strong> (trabajo de estrategia: personas, angulos, formatos)</li>
+    <li><strong>Bajar el objetivo</strong> del cliente</li>
+  </ol>
+  <p style="margin-top: 0.5rem; color: var(--text-dim);">No decidir es decidir la cuarta: incumplir el objetivo.</p>
+</div>
+
+<hr>
+
+<!-- ================================================ -->
+<!-- SECTION 13: Resumen rapido -->
+<!-- ================================================ -->
+<div class="section">
+  <div class="section-num">Resumen</div>
+  <h2>Checklist Rapido</h2>
+
+  <div class="card card-accent">
+    <ol style="line-height: 2;">
+      <li>Define tu <strong>winner</strong> = gasto minimo 50 euros + ROAS de tu KPI Panel</li>
+      <li>Calcula los <strong>6 KPIs</strong>: hit rate, churn A/B/C, gasto/winner, test tax</li>
+      <li>Convierte tu objetivo de <strong>facturacion a inversion</strong> (facturacion / ROAS objetivo)</li>
+      <li>Ejecuta los <strong>5 pasos del forecast</strong> para obtener creativos/mes</li>
+      <li>Divide entre 4 para obtener <strong>creativos/semana</strong></li>
+      <li>Desglosa en <strong>iteraciones + conceptos nuevos</strong></li>
+      <li><strong>Diagnostica:</strong> es un problema de volumen o de calidad?</li>
+      <li><strong>Actua</strong> sobre la palanca correcta</li>
+    </ol>
+  </div>
+</div>
+
+<hr>
+
+<!-- ================================================ -->
+<!-- SECTION 14: Donde encontrar la skill -->
+<!-- ================================================ -->
+<div class="section">
+  <div class="section-num">Recursos</div>
+  <h2>Donde Encontrar la Skill Completa</h2>
+
+  <p>Este SOP es un resumen ejecutivo. La skill completa <code>mlo-estratega-creativo</code> — con todas las formulas, los 7 ficheros de referencia, las 4 graficas, el template del deck HTML de 9 bloques, y el proceso completo — esta disponible en:</p>
+
+  <div class="card card-accent">
+    <p><strong>GitHub:</strong> <code>growthmlo-code/creative-scale-repository-skills</code></p>
+    <p style="margin-top: 0.5rem;"><strong>Archivo:</strong> <code>mlo-estratega-creativo.zip</code></p>
+    <p style="margin-top: 0.5rem; color: var(--text-dim); font-size: 0.85rem;">Contiene: skill.md + 7 ficheros de referencia + ejemplo HTML del deck de volumen creativo.</p>
+  </div>
+
+  <p style="margin-top: 1rem;">La skill se instala en Claude (Settings → Skills → Upload ZIP) y permite calcular automaticamente el volumen creativo de cualquier marca conectada a Meta Ads.</p>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="logo">M.L.O Growth</div>
+  <p>Creative Scale Program — SOP Volumen Creativo</p>
+  <p style="margin-top: 0.3rem;">Octubre 2026</p>
+</div>
+
+</div>
+</body>
+</html>
